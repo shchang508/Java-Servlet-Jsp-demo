@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="xmlns.jcp.org/xml/ns/javaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="xmlns.jcp.org/xml/ns/javaee xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="3.1">
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- sets the default session timeout to 60 minutes. -->
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+	
+	<!-- system Variable -->
+	<context-param>
+		<param-name>projectName</param-name>
+		<param-value>Java-Servlet-JSP-demo</param-value>
+	</context-param>
+	<context-param>
+		<param-name>Owasp.CsrfGuard.Config</param-name>
+		<param-value>WEB-INF/Owasp.CsrfGuard.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>Owasp.CsrfGuard.Config.Print</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- Request Listener -->
+	<listener>
+		<listener-class>com.seesawin.demo.ch09.linstener.HttpRequestLinstener</listener-class>
+	</listener>
+	
+	<!-- Session Listener -->
+	<listener>
+		<listener-class>com.seesawin.demo.ch09.linstener.HttpSessionCounterLinstener</listener-class>
+	</listener>
+
+	<!-- Context Listener -->
+	<listener>
+		<listener-class>
+			com.seesawin.demo.ch09.linstener.HttpServletContextLinstener
+		</listener-class>
+	</listener>
+	
+	<!-- Context Listener CSRF Guard -->
+	<listener>
+		<listener-class>
+			org.owasp.csrfguard.CsrfGuardServletContextListener
+		</listener-class>
+	</listener>
+
+<!-- 	<listener> -->
+<!-- 		<listener-class> -->
+<!-- 			org.owasp.csrfguard.CsrfGuardHttpSessionListener -->
+<!-- 		</listener-class> -->
+<!-- 	</listener> -->
+
+
+<!-- 	<filter> -->
+<!-- 		<filter-name>CSRFGuard</filter-name> -->
+<!-- 		<filter-class>org.owasp.csrfguard.CsrfGuardFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>CSRFGuard</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+</web-app>
